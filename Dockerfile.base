@@ -1,0 +1,9 @@
+FROM debian:bookworm-slim
+
+ENV PROJ_VERSION=8.2.1
+
+RUN apt update && apt install -y wget ca-certificates curl sqlite3 libsqlite3-dev libtiff-dev libcurl4-openssl-dev cmake build-essential liblerc4
+RUN wget https://download.osgeo.org/proj/proj-${PROJ_VERSION}.tar.gz && tar zxvf proj-${PROJ_VERSION}.tar.gz && cd proj-${PROJ_VERSION} \
+    && cmake . \
+    && make \
+    && make install
